@@ -1,60 +1,69 @@
-
 <div th:replace="compartilhado/topo">...</div>
 
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
+<!-- Begin Page Content -->
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">admnistradores</h1>
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Administradores</h1>
-                    
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Lista Administradores</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>email</th>
-                                            <th>endereço</th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>email</th>
-                                            <th>endereço</th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <tr>
-                                            <td>Michael Bruce</td>
-                                            <td>email2@test2</td>
-                                            <td>Singapore</td>
-                                            <td><a href="#" class="btn btn-warning">Alterar</a></td>
-                                            <td><a href="#" class="btn btn-danger">excluir</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Donna Snider</td>
-                                            <td>Email@test</td>
-                                            <td>New York</td>
-                                            <td><a href="#" class="btn btn-warning">Alterar</a></td>
-                                            <td><a href="#" class="btn btn-danger">excluir</a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div th:replace="compartilhado/baixo">...</div>
-                <!-- /.container-fluid -->
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <a
+        href="/admnistradores/novo"
+        class="btn btn-primary"
+        style="margin-right: 20px"
+        >Novo</a
+      >
+      <h6
+        class="m-0 font-weight-bold text-primary"
+        style="display: inline-block"
+      >
+        Lista admnistradores
+      </h6>
+    </div>
 
-           
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          class="table table-bordered"
+          id="dataTable"
+          width="100%"
+          cellspacing="0"
+        >
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>senha</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>senha</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </tfoot>
+          <tbody>
+            <tr th:each="admnistrador : ${admnistradores}">
+              <td th:text="${admnistrador.id}"></td>
+              <td th:text="${admnistrador.nome}"></td>
+              <td th:text="${admnistrador.email}"></td>
+              <td th:text="${admnistrador.senha}"></td>
+              <td><a href="#" class="btn btn-warning">Alterar</a></td>
+              <td><a href="#" th:onclick="'if(confirm(\'Confirma?\')) { window.location.href = \'' + @{/admnistradores/{id}(id=${admnistrador.id})} + '/excluir\'}'"
+                class="btn btn-danger">Excluir</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div th:replace="compartilhado/baixo">...</div>
